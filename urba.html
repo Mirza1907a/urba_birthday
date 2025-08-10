@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Special: For Urba — A Loving Dua</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1: linear-gradient(180deg,#0b1020,#1a1630 60%,#2b1020);
+    --card-bg:#fff8f6;
+    --accent:#b76e79; /* rose gold */
+    --text:#2b2630;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Poppins',sans-serif;
+    background: var(--bg1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    color:var(--text);
+  }
+
+  /* Container */
+  .wrap{
+    width:100%;
+    max-width:1000px;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:20px;
+    align-items:start;
+  }
+  @media (max-width:920px){ .wrap{ grid-template-columns:1fr; padding:10px } }
+
+  /* Left: Text card */
+  .detail-card{
+    background: linear-gradient(180deg, #fffefc, #fff7f5);
+    border-radius:14px;
+    padding:28px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+    max-height:80vh;
+    overflow:auto;
+  }
+  .detail-card .heading{
+    font-family:'Amiri',serif;
+    font-size:clamp(20px,3.2vw,28px);
+    color:var(--accent);
+    margin-bottom:8px;
+    text-align:center;
+  }
+  .detail-card .sub{
+    text-align:center;
+    color:rgba(0,0,0,0.6);
+    margin-bottom:18px;
+  }
+
+  .text-block{
+    background: linear-gradient(90deg, rgba(183,110,121,0.03), rgba(0,0,0,0.01));
+    padding:18px;
+    border-radius:10px;
+    margin-bottom:14px;
+    line-height:1.9;
+    font-size:15px;
+  }
+
+  .arabic{
+    font-family:'Amiri',serif;
+    font-size:20px;
+    direction:rtl;
+    text-align:right;
+    color:#2b0f18;
+    margin-bottom:8px;
+  }
+  .translation{
+    font-size:15px;
+    color:#2f2f2f;
+    margin-top:6px;
+  }
+
+  .signature{
+    text-align:right;
+    font-weight:600;
+    margin-top:14px;
+    color:#6b1220;
+  }
+
+  /* Right: Music & visual */
+  .side-panel{
+    position:relative;
+    background:linear-gradient(180deg,#1b0f18,#340a1b);
+    border-radius:14px;
+    padding:18px;
+    color:#fff;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+    justify-content:flex-start;
+  }
+  .cover{
+    width:100%;
+    border-radius:10px;
+    background:linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    padding:12px;
+    text-align:center;
+  }
+  .cover h3{ margin:8px 0 4px 0; font-size:18px; font-family:'Amiri',serif; }
+  .cover p{ margin:0; font-size:13px; color:rgba(255,255,255,0.85) }
+
+  .controls{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-top:10px;
+  }
+  .play-btn{
+    background: linear-gradient(135deg,#ff6b81,#ffb199);
+    border:none;
+    color:#111;
+    padding:12px 18px;
+    border-radius:999px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow: 0 8px 20px rgba(255,107,129,0.25);
+  }
+  .play-btn.paused{ background: transparent; border:1px solid rgba(255,255,255,0.12); color:#fff; }
+
+  .progress{
+    width:100%;
+    height:8px;
+    background:rgba(255,255,255,0.08);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .progress .bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#ffd1d7,#ff6b81);
+    transition:width 0.2s linear;
+  }
+
+  .note{ font-size:12px; color:rgba(255,255,255,0.7); text-align:center; margin-top:6px }
+
+  /* small helper */
+  .muted-tip{ font-size:12px; color:#ffd3d8; opacity:0.95; text-align:center }
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Left: detailed Arabic + Urdu translations -->
+  <div class="detail-card" role="article" aria-label="Detailed Arabic and Urdu birthday message">
+    <div class="heading">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ — For My Beloved Urba</div>
+    <div class="sub">Arabic duas, Quranic reminders and a long heartfelt Urdu translation — from Mouaviz Baig ❤️</div>
+
+    <!-- Block 1: Quranic Ayah + translation -->
+    <div class="text-block">
+      <div class="arabic">وَمِنْ آيَاتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا لِّتَسْكُنُوٓا۟ إِلَيْهَا ۚ وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ ۚ إِنَّ فِي ذَٰلِكَ لَءَايَـٰتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</div>
+      <div class="translation">
+        <b>Tarjuma (Urdu):</b><br>
+        اور اس کی نشانیاں ہیں کہ اُس نے تمہاری ہی جنس سے تمہارے لئے زوجات پیدا کیں تاکہ تم ان میں سکون حاصل کرو؛ اور اس نے تمہارے درمیان مودّت اور رحمت رکھی۔ بے شک اس میں غور کرنے والے لوگوں کے لئے نشانیاں ہیں۔<br><br>
+        <i>(یہ آیت ہمیں یاد دلاتی ہے کہ ہمارا رشتہ اللہ کی رحمت اور پیار کا نتیجہ ہے — تم میرے لیے سکون اور رحمت ہو، میری جان۔)</i>
+      </div>
+    </div>
+
+    <!-- Block 2: Long heartfelt Arabic dua + Urdu translation -->
+    <div class="text-block">
+      <div class="arabic">
+        رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا
+      </div>
+      <div class="translation">
+        <b>Tarjuma (Urdu):</b><br>
+        اے ہمارے رب! ہمیں ہماری بیویوں اور اولاد میں آنکھوں کی ٹھنڈک عطا فرما، اور ہمیں متقی لوگوں کے لیے پیشوا بنا دے۔<br><br>
+        <i>اے میری پیاری <b>Urba Fatima</b> — میری دعا یہی ہے کہ اللہ تمہیں وہ سکون دے جو آنکھوں کو ٹھنڈک دے؛ وہ ایمان اور خوشی دے جس کی میں تمہارے لیے ہر روز دعا کرتا ہوں۔</i>
+      </div>
+    </div>
+
+    <!-- Block 3: Personal long Arabic love & prayer (crafted), with Urdu translation -->
+    <div class="text-block">
+      <div class="arabic">
+        أَنَا أَشْكُرُ اللّٰهَ عَلَى وُجُودِكِ فِي حَيَاتِي. أَدْعُو أَنْ يَحْفَظَكِ، وَيُمْنَحَكِ السَّعَادَةَ، وَيُمَكِّنَنَا مِنْ بِنَاءِ بَيْتٍ مَلِيئٍ بِالْمَحَبَّةِ وَالْخَيْرِ. إِنِّي أُحِبُّكِ بِحُبٍّ يَفُوقُ الْكَلِمَاتِ، وَأَتَمَنَّى لَكِ عُمُرًا مُمْتَدًّا وَإِيْمَانًا مُتَزَايِدًا.
+      </div>
+      <div class="translation">
+        <b>Tarjuma (Urdu):</b><br>
+        میں اللہ کا شکر ادا کرتا ہوں کہ تم میری زندگی میں ہو۔ میں دعا کرتا ہوں کہ اللہ تمہاری حفاظت فرمائے، تمہیں خوشی عطا فرمائے، اور ہمیں ایک ایسا گھر نصیب فرمائے جو محبت اور بھلائی سے بھرا ہو۔ میں تم سے ایسے پیار کرتا ہوں جو الفاظ سے بڑھ کر ہے، اور میری خواہش ہے کہ اللہ تمہیں لمبی عمر اور بڑھتی ہوئی ایمان دے۔<br><br>
+        <i>میری جان <b>Urba</b> — تم میری ہر خوشی کی وجہ ہو۔ میری زندگی تمہارے بغیر نامکمل ہے۔</i>
+      </div>
+    </div>
+
+    <!-- Block 4: Romantic pledge in Arabic + Urdu -->
+    <div class="text-block">
+      <div class="arabic">
+        أَعِدُكِ أَنْ أَكُونَ لَكِ نَصِيرًا فِي الدُّنْيَا وَالْآخِرَةِ، أُحَافِظُ عَلَى ضِحْكَتِكِ، أَدْعُو لَكِ، وَأَسْعَى دَائِمًا لِرِضَا اللَّهِ فِي قَلْبِكِ.
+      </div>
+      <div class="translation">
+        <b>Tarjuma (Urdu):</b><br>
+        میں تم سے وعدہ کرتا ہوں کہ دنیا اور آخرت میں تمہارا ساتھ دوں گا، تمہاری ہنسی کا خیال رکھوں گا، تمہارے لیے دعا کروں گا، اور ہمیشہ اللہ کی خوشنودی کے لیے کوشش کروں گا تاکہ وہ تمہارے دل میں ہوں۔<br><br>
+        <span class="signature">— ہمیشہ تمہارا، <b>Mouaviz Baig</b></span>
+      </div>
+    </div>
+
+    <!-- Closing dua -->
+    <div class="text-block" style="text-align:center;">
+      <div class="arabic" style="font-size:18px;direction:rtl;text-align:center;">
+        اَللّٰهُمَّ اغْفِرْ لَهَا، وَارْحَمْهَا، وَبَارِكْ لَهَا فِي عُمُرِهَا وَعَمَلِهَا
+      </div>
+      <div class="translation" style="text-align:center;">
+        <b>Tarjuma (Urdu):</b><br>
+        اے اللہ! اس کی مغفرت فرما، اس پر رحمت فرما، اور اس کی عمر و عمل میں برکت ڈال دے۔ آمین۔
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right: Music panel -->
+  <div class="side-panel" aria-label="Music and controls">
+    <div class="cover">
+      <h3>Special Nasheed for Urba</h3>
+      <p>Halal Arabic nasheed — play to begin the birthday blessing</p>
+    </div>
+
+    <!-- Audio element (replace src with your file or URL) -->
+    <!-- Put your halal nasheed file in same folder and name it 'nasheed.mp3' OR replace src with hosted URL -->
+    <audio id="nasheed" preload="auto" src="https://archive.org/download/background-nasheed-collection/Background%20Nasheed%201.mp3"></audio>
+
+    <div class="controls" style="width:100%;">
+      <button id="play" class="play-btn" aria-pressed="false">Play Nasheed ▶︎</button>
+      <div style="flex:1">
+        <div class="progress" aria-hidden="true">
+          <div class="bar" id="bar"></div>
+        </div>
+        <div class="note">If autoplay is blocked, tap Play. The nasheed is meant to be calming and halal.</div>
+      </div>
+    </div>
+
+    <div style="width:100%; text-align:center; margin-top:8px;">
+      <div class="muted-tip">Tip: If audio doesn't start on load, click anywhere on the page to allow sound (mobile browsers often require interaction).</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  // Music controls & autoplay attempt
+  const audio = document.getElementById('nasheed');
+  const playBtn = document.getElementById('play');
+  const bar = document.getElementById('bar');
+
+  // Try to autoplay softly (may be blocked). We'll attempt and update UI.
+  function tryAutoplay() {
+    // attempt to play; if blocked, user can click Play
+    audio.play().then(()=> {
+      playBtn.textContent = 'Pause ✦';
+      playBtn.classList.remove('play-btn');
+      playBtn.classList.add('paused');
+    }).catch(err=>{
+      // autoplay blocked
+      // keep button as Play
+      console.log('Autoplay blocked or not allowed:', err);
+    });
+  }
+
+  // Update progress
+  audio.addEventListener('timeupdate', () => {
+    if(audio.duration) {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      bar.style.width = percent + '%';
+    }
+  });
+
+  // Toggle play/pause on button click
+  playBtn.addEventListener('click', (e)=>{
+    if(audio.paused){
+      audio.play().then(()=>{
+        playBtn.textContent = 'Pause ✦';
+        playBtn.classList.remove('play-btn');
+        playBtn.classList.add('paused');
+      }).catch(()=> {
+        // If play still blocked, try to resume after user gesture
+        console.warn('Play prevented');
+      });
+    } else {
+      audio.pause();
+      playBtn.textContent = 'Play Nasheed ▶︎';
+      playBtn.classList.add('play-btn');
+      playBtn.classList.remove('paused');
+    }
+  });
+
+  // If user interacts anywhere, try autoplay (useful for mobile)
+  document.addEventListener('click', onceUserInteract, { once:true });
+  function onceUserInteract(){
+    if(audio.paused) {
+      audio.play().then(()=> {
+        playBtn.textContent = 'Pause ✦';
+        playBtn.classList.remove('play-btn');
+        playBtn.classList.add('paused');
+      }).catch(()=>{});
+    }
+  }
+
+  // Small accessibility: space/enter to toggle when focus on button
+  playBtn.addEventListener('keydown', (e)=>{
+    if(e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      playBtn.click();
+    }
+  });
+
+  // try initial autoplay (may be blocked)
+  tryAutoplay();
+</script>
+
+</body>
+</html>
+ 
