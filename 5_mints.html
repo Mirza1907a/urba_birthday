@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Birthday — Urba Fatima</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#0b0710;
+    --gold1:#FFD700;
+    --gold2:#FFB84D;
+    --accent:#FFF7E6;
+    --card: rgba(255,255,255,0.03);
+  }
+
+  *{box-sizing:border-box;}
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:
+      radial-gradient(1200px 600px at 10% 20%, rgba(255,219,128,0.06), transparent 6%),
+      linear-gradient(180deg,var(--bg-dark), #25141f 60%);
+    color: var(--accent);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-y: auto;
+  }
+
+  /* page container */
+  .wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 28px 80px; /* extra bottom padding for scroll */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* start from top */
+  }
+
+  .card{
+    width: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 20px 60px rgba(2,2,8,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    position: relative;
+    overflow: visible;
+  }
+
+  /* header */
+  .head{
+    text-align: center;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 5;
+  }
+  .name{
+    font-family: "Playfair Display", serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--gold1);
+    letter-spacing: 0.6px;
+    margin: 0 0 6px;
+    text-shadow: 0 6px 30px rgba(0,0,0,0.6);
+  }
+  .sub{
+    font-weight: 600;
+    color: #fff9ea;
+    letter-spacing: 0.2px;
+    margin-bottom: 8px;
+  }
+
+  .timer{
+    display: inline-block;
+    margin-top: 6px;
+    background: rgba(255,255,255,0.03);
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,215,0,0.12);
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 22px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.4);
+  }
+
+  /* content */
+  .content{
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 26px;
+    margin-top: 22px;
+    align-items: start;
+  }
+
+  .left{
+    padding: 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.02);
+  }
+
+  .right{
+    padding: 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,215,0,0.02), rgba(255,215,0,0.01));
+    border: 1px solid rgba(255,215,0,0.06);
+  }
+
+  h3{
+    margin: 0 0 12px 0;
+    color: var(--gold2);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  p.lead{
+    margin: 0 0 14px 0;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #fff;
+  }
+
+  /* poetry list (15 lines) */
+  .poetry{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .poetry .line{
+    background: rgba(255,255,255,0.02);
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #fff9ea;
+    border-left: 4px solid rgba(255,215,0,0.12);
+  }
+
+  /* duas / hadith */
+  .duas p{ margin: 10px 0; font-size: 15px; color: #fff8e6; line-height: 1.6; }
+  .arabic{ font-family: "Playfair Display", serif; direction: rtl; text-align: right; color: #ffeeb8; }
+
+  /* celebration / confetti area (pure CSS) */
+  .confetti-field{
+    pointer-events: none;
+    position: fixed;
+    width: 100vw;
+    height: 70vh;
+    left: 50%;
+    top: 15vh;
+    transform: translateX(-50%);
+    z-index: 6;
+    overflow: visible;
+  }
+
+  .confetti{
+    position: absolute;
+    width: 12px;
+    height: 20px;
+    border-radius: 3px;
+    transform-origin: center;
+    opacity: 0.95;
+    animation: confettiFall linear forwards;
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(-10vh) rotate(0deg) scaleX(1); opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg) scaleX(0.6); opacity: 0; }
+  }
+
+  /* single-run shimmer on header after countdown ends */
+  .celebrate {
+    animation: glowPulse 1.6s ease-in-out infinite alternate;
+  }
+  @keyframes glowPulse {
+    from{ text-shadow:0 6px 26px rgba(255,215,0,0.12); transform: translateY(0); }
+    to{ text-shadow:0 16px 60px rgba(255,215,0,0.28); transform: translateY(-2px); }
+  }
+
+  /* footer note */
+  .note{ margin-top: 18px; color: rgba(255,255,255,0.7); font-size: 13px; text-align: center }
+
+  /* responsive */
+  @media (max-width: 980px){
+    .content{ grid-template-columns: 1fr; }
+    .right{ order: 2 }
+    .left{ order: 1 }
+    .wrap{ padding: 18px }
+  }
+  @media (max-width: 560px){
+    .name{ font-size: 34px }
+    .timer{ font-size: 18px }
+    .card{ padding: 20px }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="card" role="main" aria-label="Birthday countdown for Urba Fatima">
+    <div class="head">
+      <div class="name" id="heroName">Urba Fatima</div>
+      <div class="sub">✨ Ap meri zindagi ka noor — bas 5 minutes bachey ✨</div>
+      <div class="timer" id="timerLabel" aria-live="polite">05:00</div>
+    </div>
+
+    <div class="content" role="region" aria-label="message and duas">
+      <div class="left">
+        <h3>Long Love Message & Poetry</h3>
+        <p class="lead">
+          Ap mera sabse pyara tohfa hain — Allah ki rehmat, meri duaon ka qubool jawab.  
+          Aaj ke is khaas pal se pehle main ap ke liye har sakoon aur har khushi ki dua karta hoon.
+        </p>
+
+        <div class="poetry" aria-hidden="false">
+          <div class="line">1. 💌 Ap meri subah ka pehla khayal hain aur raat ka aakhri sukoon.</div>
+          <div class="line">2. 🌙 Apki muskurahat mere dil ka wo noor hai jo hamesha roshan rahe.</div>
+          <div class="line">3. 🌹 آپ میری دعاؤں کا نور ہیں، میری دنیا کا سکون ہیں۔</div>
+          <div class="line">4. ✨ In your eyes I find the promise of a thousand beautiful tomorrows.</div>
+          <div class="line">5. 💫 Har saans me apka naam, har dua me apki khushi — mera sab kuch.</div>
+          <div class="line">6. 🌷 Ap meri zindagi ka wo naghma jo dil ko chain deta hai.</div>
+          <div class="line">7. 💞 I thank Allah for you every day — a blessing I will never take for granted.</div>
+          <div class="line">8. 🌸 Ap ki har muskaan mere liye jannat ka ehsas hai.</div>
+          <div class="line">9. 🌟 My heart whispers your name in every quiet moment — Urba Fatima.</div>
+          <div class="line">10. 💖 Ap wo saaya hain jo meri zindagi ko garmayi deta hai.</div>
+          <div class="line">11. 🕊 May Allah fill your days with iman, health, and endless joy.</div>
+          <div class="line">12. 💐 ہر لمحہ اللہ کی رحمت آپ پر سایہ فگن رہے۔</div>
+          <div class="line">13. ✨ My love for you is calm, deep and forever — an unspoken promise.</div>
+          <div class="line">14. 🌹 Aap meri dua ka hissa hain jo har waqt mere saath rehta hai.</div>
+          <div class="line">15. 💛 Forever and always — ap mere dil mein ho, meri Jaan.</div>
+        </div>
+      </div>
+
+      <aside class="right" aria-label="duas and hadith">
+        <h3>Duas & Islamic Touch</h3>
+        <div class="duas">
+          <p class="arabic">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+          <p class="arabic">اللَّهُمَّ بَارِكْ لَهَا فِي عُمْرِهَا وَزادْهَا مِنْ خَيْرِكَ</p>
+          <p>Meaning: <em>Ya Allah, apke jeene mein barkat de aur apko apni rehmat se nawaz.</em></p>
+
+          <p style="margin-top:8px;"><strong>Hadees:</strong></p>
+          <p>“The best among you are those who are best to their families.” — Prophet Muhammad ﷺ</p>
+
+          <p style="margin-top:12px;">Short dua from me: <br>
+            <em>May Allah keep your heart cheerful, your faith strong, and your life filled with blessings.</em></p>
+
+          <p style="margin-top:12px; font-size:13px; color:rgba(255,255,255,0.8)">— A little plan: 5 minutes baad ek chhota surprise, magar abhi enjoy kijiye is moment ko. ❤️</p>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</div>
+
+<!-- confetti centered near top middle -->
+<div class="confetti-field" aria-hidden="true">
+  <div class="confetti" style="left:4%; top:-8vh; background:#FFD700; width:10px; height:18px; animation-duration:2.6s; transform:rotate(12deg)"></div>
+  <div class="confetti" style="left:9%; top:-10vh; background:#FFC857; width:8px; height:16px; animation-duration:2.9s; transform:rotate(40deg)"></div>
+  <div class="confetti" style="left:13%; top:-6vh; background:#FFB84D; width:12px; height:20px; animation-duration:3.2s; transform:rotate(70deg)"></div>
+  <div class="confetti" style="left:18%; top:-9vh; background:#FFE8A1; width:8px; height:16px; animation-duration:2.5s; transform:rotate(18deg)"></div>
+  <div class="confetti" style="left:22%; top:-7vh; background:#FFD700; width:10px; height:22px; animation-duration:3.0s; transform:rotate(120deg)"></div>
+  <div class="confetti" style="left:26%; top:-11vh; background:#FFB84D; width:9px; height:18px; animation-duration:2.8s; transform:rotate(200deg)"></div>
+  <div class="confetti" style="left:30%; top:-10vh; background:#FFC857; width:11px; height:20px; animation-duration:3.3s; transform:rotate(270deg)"></div>
+  <div class="confetti" style="left:34%; top:-8vh; background:#FFD700; width:8px; height:16px; animation-duration:2.7s; transform:rotate(40deg)"></div>
+  <div class="confetti" style="left:38%; top:-9vh; background:#FFE8A1; width:10px; height:18px; animation-duration:3.1s; transform:rotate(80deg)"></div>
+  <div class="confetti" style="left:42%; top:-6vh; background:#FFB84D; width:12px; height:22px; animation-duration:2.6s; transform:rotate(10deg)"></div>
+
+  <div class="confetti" style="left:46%; top:-12vh; background:#FFD700; width:10px; height:18px; animation-duration:3.0s; transform:rotate(320deg)"></div>
+  <div class="confetti" style="left:50%; top:-7vh; background:#FFC857; width:9px; height:18px; animation-duration:2.9s; transform:rotate(60deg)"></div>
+  <div class="confetti" style="left:54%; top:-11vh; background:#FFB84D; width:8px; height:16px; animation-duration:3.2s; transform:rotate(140deg)"></div>
+  <div class="confetti" style="left:58%; top:-8vh; background:#FFD700; width:11px; height:20px; animation-duration:2.7s; transform:rotate(230deg)"></div>
+  <div class="confetti" style="left:62%; top:-9vh; background:#FFE8A1; width:10px; height:18px; animation-duration:3.1s; transform:rotate(300deg)"></div>
+  <div class="confetti" style="left:66%; top:-10vh; background:#FFC857; width:12px; height:22px; animation-duration:2.8s; transform:rotate(50deg)"></div>
+  <div class="confetti" style="left:70%; top:-7vh; background:#FFD700; width:9px; height:18px; animation-duration:3.3s; transform:rotate(160deg)"></div>
+  <div class="confetti" style="left:74%; top:-11vh; background:#FFB84D; width:8px; height:16px; animation-duration:2.6s; transform:rotate(210deg)"></div>
+  <div class="confetti" style="left:78%; top:-9vh; background:#FFE8A1; width:10px; height:22px; animation-duration:3.0s; transform:rotate(90deg)"></div>
+  <div class="confetti" style="left:82%; top:-8vh; background:#FFD700; width:11px; height:20px; animation-duration:2.9s; transform:rotate(45deg)"></div>
+
+  <div class="confetti" style="left:86%; top:-11vh; background:#FFC857; width:9px; height:18px; animation-duration:3.2s; transform:rotate(120deg)"></div>
+  <div class="confetti" style="left:90%; top:-7vh; background:#FFD700; width:10px; height:18px; animation-duration:2.7s; transform:rotate(250deg)"></div>
+  <div class="confetti" style="left:94%; top:-10vh; background:#FFB84D; width:8px; height:16px; animation-duration:3.1s; transform:rotate(300deg)"></div>
+  <div class="confetti" style="left:98%; top:-8vh; background:#FFE8A1; width:11px; height:22px; animation-duration:2.8s; transform:rotate(40deg)"></div>
+</div>
+
+</body>
+</html>
