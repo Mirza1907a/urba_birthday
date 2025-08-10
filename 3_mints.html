@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3 Minutes Remaining - Birthday Wish for Urba Fatima</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold-light: #FFEA7F;
+    --bg-dark: #121212;
+    --text-light: #fff9e3;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #1a1a1a 0%, #3a2e00 100%);
+    color: var(--text-light);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    position: relative;
+    
+  }
+  /* Cake container behind content */
+  .cake-background {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 240px;
+    filter: drop-shadow(0 0 8px var(--gold));
+    opacity: 0.15;
+    z-index: 0;
+  }
+  /* Cake base */
+  .cake-base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 140px;
+    background: linear-gradient(145deg, #bfa130, #e7d760);
+    border-radius: 30px 30px 10px 10px;
+    box-shadow: inset 0 4px 12px #fff7a1, 0 0 20px #ffde59;
+  }
+  /* Cake layers */
+  .cake-layer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(145deg, #ffd42a, #ffe87a);
+    border-radius: 20px 20px 10px 10px;
+    box-shadow: inset 0 2px 6px #fffcc4;
+    border: 2px solid #ffd800;
+  }
+  .layer1 {
+    bottom: 140px;
+  }
+  .layer2 {
+    bottom: 190px;
+    width: 120px;
+  }
+  .layer3 {
+    bottom: 230px;
+    width: 100px;
+  }
+  /* Candles */
+  .candle {
+    position: absolute;
+    bottom: 270px;
+    width: 8px;
+    height: 30px;
+    background: linear-gradient(145deg, #ffd84a, #f9c72f);
+    border-radius: 3px;
+    box-shadow: 0 0 6px #ffe95e;
+  }
+  .candle:nth-child(1) { left: 40%; }
+  .candle:nth-child(2) { left: 50%; }
+  .candle:nth-child(3) { left: 60%; }
+  /* Flame */
+  .flame {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%) rotate(10deg);
+    width: 12px;
+    height: 20px;
+    background: radial-gradient(circle at 50% 40%, #fffb99 30%, #ffb800 70%);
+    border-radius: 60% 60% 50% 50% / 70% 70% 30% 30%;
+    filter: drop-shadow(0 0 5px #ffd600);
+    animation: flicker 1.2s infinite alternate;
+  }
+  .flame::before {
+    content: '';
+    position: absolute;
+    top: 5px; left: 50%;
+    width: 6px; height: 12px;
+    background: radial-gradient(circle at 50% 40%, #fff, #ffdb00);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+  @keyframes flicker {
+    0% { transform: translateX(-50%) rotate(10deg) scale(1); }
+    100% { transform: translateX(-50%) rotate(12deg) scale(1.1); }
+  }
+
+  /* Content container */
+  .container {
+    background: linear-gradient(135deg, #4b3b00, #a18400);
+    padding: 32px 44px;
+    border-radius: 22px;
+    box-shadow: 0 0 25px var(--gold-light);
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  h1.heading {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 12px;
+    color: var(--gold);
+    text-shadow: 0 0 10px #fff9b1;
+    gap: 0.5rem;
+  }
+  h1.heading .icon {
+    font-size: 3rem;
+    line-height: 1;
+    user-select: none;
+  }
+  .timer {
+    font-weight: 700;
+    font-size: 1.7rem;
+    background: rgba(255, 223, 0, 0.18);
+    padding: 12px 26px;
+    border-radius: 36px;
+    border: 1.7px solid var(--gold);
+    color: var(--gold-light);
+    margin-bottom: 28px;
+    box-shadow: 0 0 16px var(--gold-light);
+    letter-spacing: 1.2px;
+  }
+  p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .dua {
+    font-style: italic;
+    color: #fff8b2;
+    margin-bottom: 22px;
+  }
+  .hadith {
+    font-size: 1rem;
+    background: rgba(255, 223, 0, 0.12);
+    padding: 16px 22px;
+    border-radius: 18px;
+    color: #fff9ce;
+    border: 1.2px solid #ffe15a;
+    font-weight: 600;
+  }
+  @media (max-width: 480px) {
+    .container {
+      padding: 28px 28px;
+    }
+    h1.heading {
+      font-size: 2.4rem;
+    }
+    .timer {
+      font-size: 1.4rem;
+      padding: 10px 20px;
+      letter-spacing: normal;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 14px;
+    }
+    .dua {
+      margin-bottom: 18px;
+    }
+    .hadith {
+      font-size: 0.9rem;
+      padding: 14px 18px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cake illustration behind -->
+<div class="cake-background" aria-hidden="true">
+  <div class="cake-base"></div>
+  <div class="cake-layer layer1"></div>
+  <div class="cake-layer layer2"></div>
+  <div class="cake-layer layer3"></div>
+  <div class="candle" style="left:40%;">
+    <div class="flame"></div>
+  </div>
+  <div class="candle" style="left:50%;">
+    <div class="flame"></div>
+  </div>
+  <div class="candle" style="left:60%;">
+    <div class="flame"></div>
+  </div>
+</div>
+
+<div class="container" role="main" aria-label="Birthday countdown and wish for Urba Fatima">
+  <h1 class="heading">
+    <span class="icon">✨</span>
+    <span class="name">Urba Fatima</span>
+    <span class="icon">✨</span>
+  </h1>
+  <div class="timer" aria-live="polite" aria-atomic="true">⏳ 03:00 Minutes Remaining</div>
+
+  <p>Dearest wifey, these last moments before your special day fill my heart with endless love and prayers.  
+  May Allah shower you with happiness, health, and endless blessings.</p>
+
+  <p class="dua">اللهم اجعل أيامك كلها سرور ورضا ونجاح يا رب</p>
+
+  <div class="hadith" aria-label="Hadith about kindness to wife">
+    “The best among you are those who treat their wives with kindness.” — Prophet Muhammad ﷺ
+  </div>
+</div>
+
+</body>
+</html>
